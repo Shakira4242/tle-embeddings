@@ -1,0 +1,20 @@
+name = "tle-sync"
+main = "src/worker.ts"
+compatibility_date = "2024-06-05"
+
+[triggers]
+crons = ["0 2 * * *"]
+
+[kv_namespaces]
+bindings = [
+  { binding = "AUTH_KV", id = "00000000000000000000000000000000" },
+  { binding = "METRICS_KV", id = "00000000000000000000000000000001" }
+]
+
+[[r2_buckets]]
+binding = "TLE_BUCKET"
+bucket_name = "tle-mirror"
+
+[vars]
+SPACE_TRACK_USER = "${SPACE_TRACK_USER}"
+SPACE_TRACK_PASSWORD = "${SPACE_TRACK_PASSWORD}"
